@@ -26,7 +26,7 @@ export default function Pizeria() {
 
 <div class="hero-text">
 
-<h3>TRAVELLING,CAMPING,HIKING</h3>
+<h3>Pizza gay</h3>
 
 <h2>AN ESCAPE TOWARDS NORTH</h2>
 
