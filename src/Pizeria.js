@@ -2,21 +2,19 @@ import React from 'react'
 
 export default function Pizeria() {
     return (
-        <div class="container">
-             <div class="sliding-background">
+     
          <div class="cover">
             <div class="nav-bar">
 
 <div class="left-bar">
-    <h1>Pizeria</h1>
+    <h1>Crunchy Royal Pizza</h1>
 </div>
 
 <div class="right-bar">
 <ul>
-     <li>Home</li>
- <li>Sobre Nosotros</li>
- <li>Contactactos</li>
- <li>Servicios</li>
+     <li>Ordenar</li>
+    <li>Login</li>
+ 
  </ul>
 
 
@@ -26,22 +24,21 @@ export default function Pizeria() {
 
 <div class="hero-text">
 
-<h3>Pizza gay</h3>
+<h3>Menu</h3>
 
-<h2>AN ESCAPE TOWARDS NORTH</h2>
+<h2>Pizza peperoni</h2>
 
-<h4>Come and visit pakistan with us</h4>
+<h2>Pizza jamon</h2>
+
+<h2>Pizza hawaiana</h2>
 
 </div>
 
-<button id="btn-1">more</button>
+<button id="btn-1">Chat </button>
 
 <button id="btn-2">sign-up</button>
 
 </div>
 
-
-</div>
-</div>
     )
 }
