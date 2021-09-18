@@ -19,46 +19,37 @@ const Order = () => {
     getLogin();
   }, []);
 
-
-
-
   return (
     <div className="cover">
       <Header></Header>
       <h1>Orders Maleate</h1>
 
       <CardGroup>
-      {productos.map((item, index) => {
-        return (
-          <>
-            {item.active ? (
-              //<h1>{item.nombre_producto}</h1>
-              
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={item.imagen} />
-                <Card.Body>
-                  <Card.Title>{item.nombre_producto}</Card.Title>
-                  <Card.Text>
-                    {item.descripcion}
-                  </Card.Text>
-                  <Card.Text> Precio {item.precio} Lempiras</Card.Text>
-                  {/* <Button variant="primary">Go somewhere</Button> */}
-                  {/* <form>
+        {productos.map((item, index) => {
+          return (
+            <>
+              {item.active ? (
+                //<h1>{item.nombre_producto}</h1>
+
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={item.imagen} />
+                  <Card.Body>
+                    <Card.Title>{item.nombre_producto}</Card.Title>
+                    <Card.Text>{item.descripcion}</Card.Text>
+                    <Card.Text> Precio {item.precio} Lempiras</Card.Text>
+                    {/* <Button variant="primary">Go somewhere</Button> */}
+                    {/* <form>
                     <label htmlFor="quantity">Quantity (between 1 and 5):</label>
                     <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
                   </form> */}
-                </Card.Body>
-              </Card>
-              
-
-            ) : null
-            }
-            <br />
-          </>
-        );
-      })}
+                  </Card.Body>
+                </Card>
+              ) : null}
+              <br />
+            </>
+          );
+        })}
       </CardGroup>
-
 
       <button
         id="btn-3"

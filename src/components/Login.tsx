@@ -37,12 +37,10 @@ export default function Login(props: any) {
   const onLoginSuccess = (res: any) => {
     console.log("Login Success:", res.profileObj);
     console.log("Login Success:", res.profileObj.name);
-    
     setShowloginButton(false);
     setShowlogoutButton(true);
     setName(true);
     setProfile(JSON.stringify(res.profileObj.name));
-    
   };
  
   const onLoginFailure = (res: any) => {
@@ -60,24 +58,25 @@ export default function Login(props: any) {
   return (
     <div className="cover">
       <Header></Header>
-      <div className="loginDiv">
-      <div className="login-wrapper">
-      <h1>Login</h1><br /><br />
-    
-        <label>Username</label><br />
-        <input type="text" {...username} autoComplete="new-password" />
-     
- 
-      <label>Password</label><br />
-        <input type="password" {...password} autoComplete="new-password" />
-
-      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
-    </div>
-    
-        {showName ? (
+      {showName ? (
           <h1 id="name">Name: {profile}</h1>
         ): null}
+      <div className="loginDiv">
+    
+      <div className="login-wrapper">
+      <h1>Login</h1><br />
+    
+        <label>Username</label>
+        <input type="text" {...username} autoComplete="new-password" />
+        <br />
+ 
+      <label>Password</label>
+        <input type="password" {...password} autoComplete="new-password" />
+      
+      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+    
+      <br /><br />
         {showloginButton ? (
           <GoogleLogin
             clientId={clientId}
@@ -98,7 +97,7 @@ export default function Login(props: any) {
           ></GoogleLogout>
         ) : null}
 
-        
+</div>
       </div>
 
       <button

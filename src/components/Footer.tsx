@@ -15,15 +15,6 @@ export default function Footer() {
       </button>
 
       <button
-        id="btn-2"
-        onClick={() => {
-          history.push("/SignUp");
-        }}
-      >
-        sign-up
-      </button>
-
-      <button
         id="btn-3"
         onClick={() => {
           history.push("/Order");
