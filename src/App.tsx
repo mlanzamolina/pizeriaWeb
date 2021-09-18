@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Chat from "./components/Chat";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
  
