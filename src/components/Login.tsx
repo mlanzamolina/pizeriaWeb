@@ -1,11 +1,30 @@
 import { useHistory } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Header from "./Header";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 
-export default function Login() {
+
+
+export default function Login(props: any) {
+  const username = useFormInput('');
+  const password = useFormInput('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+ 
+  // handle button click of login form
+  const handleLogin = () => {
+    history.push('/Order');
+  }
+  const clientId =
+    "1088533658659-ehe9onncj8fcm7vsncgaoeocr6alsp8c.apps.googleusercontent.com";
   const history = useHistory();
-  const [Login,setLogin]=useState<any[]>([]);
-
+  const [Login, setLogin] = useState<any[]>([]);
+  const [showloginButton, setShowloginButton] = useState(true);
+  const [showlogoutButton, setShowlogoutButton] = useState(false);
+  const [showName, setName] = useState(false);
+  const [profile, setProfile] = useState<string>();
+ var name;
+ 
   useEffect(() => {
     function getLogin() {
       fetch("http://localhost:4000/usuarios")
@@ -14,24 +33,74 @@ export default function Login() {
     }
     getLogin();
   }, []);
+
+  const onLoginSuccess = (res: any) => {
+    console.log("Login Success:", res.profileObj);
+    console.log("Login Success:", res.profileObj.name);
+    
+    setShowloginButton(false);
+    setShowlogoutButton(true);
+    setName(true);
+    setProfile(JSON.stringify(res.profileObj.name));
+    
+  };
+ 
+  const onLoginFailure = (res: any) => {
+    console.log("Login Failed:", res);
+  };
+   
+  const onSignoutSuccess = () => {
+    alert("You have been logged out successfully");
+    console.clear();
+    setShowloginButton(true);
+    setShowlogoutButton(false);
+    setName(false);
+  };
+ 
   return (
     <div className="cover">
       <Header></Header>
-      <h1>Login Maleate</h1>
-      {Login.map((item, index) => {
-        return (
-          <>
-            <h1>User ID:{item.user_id}</h1>
-            <h1>nombre:{item.nombre}</h1>
-            <h1>clove:{item.clave}</h1>
-            <h1>Admin:{item.admin} </h1>
-            <h1>apellido:{item.apellido} </h1>
-            <h1>username:{item.username} </h1>
-            <br />
-          </>
-        );
-      })}
+      <div className="loginDiv">
+      <div className="login-wrapper">
+      <h1>Login</h1><br /><br />
+    
+        <label>Username</label><br />
+        <input type="text" {...username} autoComplete="new-password" />
      
+ 
+      <label>Password</label><br />
+        <input type="password" {...password} autoComplete="new-password" />
+
+      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+    </div>
+    
+        {showName ? (
+          <h1 id="name">Name: {profile}</h1>
+        ): null}
+        {showloginButton ? (
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Sign In"
+            onSuccess={onLoginSuccess}
+            onFailure={onLoginFailure}
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+          />
+        ) : null
+         }
+
+        {showlogoutButton ? (
+          <GoogleLogout
+            clientId={clientId}
+            buttonText="Sign Out"
+            onLogoutSuccess={onSignoutSuccess}
+          ></GoogleLogout>
+        ) : null}
+
+        
+      </div>
+
       <button
         id="btn-3"
         onClick={() => {
@@ -42,4 +111,15 @@ export default function Login() {
       </button>
     </div>
   );
+}
+const useFormInput = (initialValue: string) => {
+  const [value, setValue] = useState(initialValue);
+ 
+  const handleChange = (e: { target: { value: any; }; }) => {
+    setValue(e.target.value);
+  }
+  return {
+    value,
+    onChange: handleChange
+  }
 }

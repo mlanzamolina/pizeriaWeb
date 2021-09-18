@@ -17,7 +17,7 @@ export default function Footer() {
       <button
         id="btn-2"
         onClick={() => {
-          history.push("/Login");
+          history.push("/SignUp");
         }}
       >
         sign-up
