@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Reviews from './components/Reviews';
+import Carrito from './components/Carrito';
 
 function App() {
  
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/Reviews/:id">
             <Reviews />
+          </Route>
+          <Route path="/Carrito">
+            <Carrito />
           </Route>
         </Switch>
       </div>

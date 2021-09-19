@@ -1,3 +1,4 @@
+import { useHistory } from "react-router";
 
 export default function Header() {
   return (
@@ -8,7 +9,10 @@ export default function Header() {
       <div className="logo">
         <img id="logo" src="img/logoPizza.png" alt="logo"></img>
         <a href="/Login">Login</a>
+        <a href="/">Home</a>
+        <a href="/Carrito">Carrito</a>
       </div>
+
     </div>
   );
 }

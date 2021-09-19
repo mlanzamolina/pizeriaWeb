@@ -132,6 +132,12 @@
 	justify-content: right;
 	text-align: right;
   }
+
+  .cover{
+	padding: 20px;
+	border: solid red 1px;
+  }
+
 .itemBoxGrid {
 display: grid;
   grid-template-columns: auto auto auto auto;

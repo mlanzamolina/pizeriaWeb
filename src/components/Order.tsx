@@ -25,7 +25,7 @@ const Order = () => {
   return (
     <div className="cover">
       <Header></Header>
-      <h1>Orders Maleate</h1>
+      <h1>Orders</h1>
 
       <CardGroup>
         {productos.map((item, index) => {
@@ -40,13 +40,12 @@ const Order = () => {
                     <Card.Title>{item.nombre_producto}</Card.Title>
                     <Card.Text>{item.descripcion}</Card.Text>
                     <Card.Text> Precio {item.precio} Lempiras</Card.Text>
-                    <button>Agregar al carrito</button>
                     <form>
-                      <label htmlFor="quantity">Quantity (between 1 and 5):</label>
-                      <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
+                      <label htmlFor="quantity">Quantity (between 0 and 5):</label>
+                      <input type="number" id="quantity" name="quantity" min="0" max="5"></input>
                     </form>
 
-                    <Button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><Link to={`/Reviews/${item.idproducto}`}>Review</Link></Button>
+                    <Link to={`/Reviews/${item.idproducto}`}>Review</Link>
 
                   </Card.Body>
                 </Card>
@@ -56,6 +55,17 @@ const Order = () => {
           );
         })}
       </CardGroup>
+      
+      
+      <button
+        id="btn-1"
+        onClick={() => {
+          history.push("/Carrito");
+        }}
+      >
+        Agregar al carrito
+      </button>
+
 
       <button
         id="btn-3"
