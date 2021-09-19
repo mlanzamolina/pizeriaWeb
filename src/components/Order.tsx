@@ -2,11 +2,14 @@ import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import React, { useState, useEffect, Component } from "react";
 import { CardGroup, Card } from "react-bootstrap";
+import Button from "@restart/ui/esm/Button";
+import { Modal, ModalBody, ModalTitle } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Order = () => {
   const history = useHistory();
   const [productos, setProductos] = useState<any[]>([]);
-  const [activeProducts, setactiveProducts] = useState(false);
+ 
 
   var name;
 
@@ -37,11 +40,14 @@ const Order = () => {
                     <Card.Title>{item.nombre_producto}</Card.Title>
                     <Card.Text>{item.descripcion}</Card.Text>
                     <Card.Text> Precio {item.precio} Lempiras</Card.Text>
-                    {/* <Button variant="primary">Go somewhere</Button> */}
-                    {/* <form>
-                    <label htmlFor="quantity">Quantity (between 1 and 5):</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
-                  </form> */}
+                    <button>Agregar al carrito</button>
+                    <form>
+                      <label htmlFor="quantity">Quantity (between 1 and 5):</label>
+                      <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
+                    </form>
+
+                    <Button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><Link to={`/Reviews/${item.idproducto}`}>Review</Link></Button>
+
                   </Card.Body>
                 </Card>
               ) : null}

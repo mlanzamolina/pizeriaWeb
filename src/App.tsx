@@ -7,6 +7,7 @@ import Chat from "./components/Chat";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Reviews from './components/Reviews';
 
 function App() {
  
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/Dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/Reviews/:id">
+            <Reviews />
           </Route>
         </Switch>
       </div>
