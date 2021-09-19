@@ -1,8 +1,8 @@
 import { Link, useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-function Reviews() {
-    let { id } = useParams();
+const Reviews = () => {
+  const { id } = useParams<{ id: string }>();
     const [reviews, setReview] = useState<any[]>([]);
     useEffect(() => {
         function getReview() {
@@ -17,14 +17,14 @@ function Reviews() {
     return (
         <>
     
-         <h3>ID: { id }</h3>
+     
             
             {reviews.map((item, index) => {
           return (
             <>
-               {console.log(id)}
-              {(item.idproducto === id) ?(
-                     <h1>{item.review}</h1>
+           
+              {(item.idproducto === parseInt(id)) ?(
+                     <h1>item:{item.review}</h1>
               )
            
               :  null
