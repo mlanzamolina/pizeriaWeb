@@ -30,7 +30,7 @@ export default function AddReview () {
       .then((response) => {
         setPost(response.data);
       });
-      
+
       history.push(`/Order`);
   }
   const [productos, setProductos] = useState<any[]>([]);
@@ -52,11 +52,7 @@ const submitValue = () => {
   const frmdetails = {
       'Review' : fName
   }
- 
-
 }*/
-
-
   return (
     <div>
       <h1>{text}</h1>
@@ -78,7 +74,14 @@ const submitValue = () => {
         })}
      <input type="text" placeholder="Review" onChange={e => setfName(e.target.value)} />
     <button onClick={createPost}>Submit</button>
-     
+    <button
+        id="btn-1"
+        onClick={() => {
+          history.push(`/Reviews/${id}`);
+        }}
+      >
+        Back
+      </button>
       </form>
     </div>
   );

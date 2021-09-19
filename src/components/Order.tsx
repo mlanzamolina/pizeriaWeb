@@ -5,13 +5,28 @@ import { CardGroup, Card } from "react-bootstrap";
 import Button from "@restart/ui/esm/Button";
 import { Modal, ModalBody, ModalTitle } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
+const baseURL = "http://localhost:4000/reviews";
 const Order = () => {
   const history = useHistory();
   const [productos, setProductos] = useState<any[]>([]);
- 
-
-  var name;
+  const [post, setPost] = useState<any[]>([]);
+  const [cantidad, setCantidad] = useState("");
+  const [text, setText] = React.useState("");
+  const [precio, setPrecio] = useState<any>();
+  const [subtotal, setSubtotal] = useState<any>();
+  function handleSubmit() {
+    const val = document.querySelectorAll("[value]");
+     console.log(val);
+    const frmdetails = {
+      Cantidad: cantidad,
+      Precio: precio,
+    };
+    console.log(frmdetails["Cantidad"]);
+    console.log(frmdetails["Precio"]);
+    setSubtotal(parseInt(frmdetails["Precio"]) * parseInt(frmdetails["Cantidad"]));
+  }
 
   useEffect(() => {
     function getLogin() {
@@ -24,9 +39,8 @@ const Order = () => {
 
   return (
     <div className="cover">
-     
       <h1>Orders</h1>
-
+        <h1>{subtotal}</h1>
       <CardGroup>
         {productos.map((item, index) => {
           return (
@@ -41,12 +55,30 @@ const Order = () => {
                     <Card.Text>{item.descripcion}</Card.Text>
                     <Card.Text> Precio {item.precio} Lempiras</Card.Text>
                     <form>
-                      <label htmlFor="quantity">Quantity (between 0 and 5):</label>
-                      <input type="number" id="quantity" name="quantity" min="0" max="5"></input>
+                      <label htmlFor="quantity" >
+                        Quantity:
+                      </label>
+                      <input
+                      placeholder="0"
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min="0"
+                        max="100"
+                        onChange={event => setCantidad(event.target.value)}
+                        onBlur={() => 
+                          {
+                            handleSubmit();
+                            setPrecio(item.precio);
+                            }}
+                      ></input>
+                     {/*<button onClick={() => 
+                      {handleSubmit();
+                        setPrecio(item.precio);
+                        }}>Submit</button>*/}
                     </form>
-
-                    <Link to={`/Reviews/${item.idproducto}`}>Review</Link>
-
+                    
+                    
                   </Card.Body>
                 </Card>
               ) : null}
@@ -55,17 +87,16 @@ const Order = () => {
           );
         })}
       </CardGroup>
-      
-      
+
+      {/*
       <button
         id="btn-1"
         onClick={() => {
           history.push("/Carrito");
         }}
       >
-        Agregar al carrito
-      </button>
-
+       
+      </button>*/}
 
       <button
         id="btn-3"

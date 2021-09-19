@@ -44,7 +44,7 @@ function App() {
           <Route path="/AddReview/:id">
             <AddReview />
           </Route>
-          <Route path="/Carrito">
+          <Route path="/Carrito/:id">
             <Carrito />
           </Route>
         </Switch>
