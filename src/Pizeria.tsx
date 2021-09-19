@@ -6,7 +6,7 @@ export default function Pizeria() {
   return (
     <div className="cover">
       <div>
-        <Header></Header>
+   
       </div>
        
       <div className="cont">

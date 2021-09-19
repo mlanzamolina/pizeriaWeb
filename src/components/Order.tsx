@@ -24,7 +24,7 @@ const Order = () => {
 
   return (
     <div className="cover">
-      <Header></Header>
+     
       <h1>Orders</h1>
 
       <CardGroup>

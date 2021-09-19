@@ -57,7 +57,7 @@ export default function Login(props: any) {
  
   return (
     <div className="cover">
-      <Header></Header>
+     
       {showName ? (
           <h1 id="name">Name: {profile}</h1>
         ): null}

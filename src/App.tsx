@@ -9,11 +9,13 @@ import Dashboard from "./components/Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Reviews from './components/Reviews';
 import Carrito from './components/Carrito';
+import Header from './components/Header';
+import AddReview from './components/AddReview';
 
 function App() {
  
   return (
-    <Router>
+    <><Header></Header><Router>
       <div className="container">
         <Switch>
           <Route exact path="/">
@@ -24,7 +26,7 @@ function App() {
           </Route>
           <Route path="/Login">
             <div className="g-signin">
-              <Login  />
+              <Login />
             </div>
           </Route>
           <Route path="/Chat">
@@ -39,12 +41,15 @@ function App() {
           <Route path="/Reviews/:id">
             <Reviews />
           </Route>
+          <Route path="/AddReview/:id">
+            <AddReview />
+          </Route>
           <Route path="/Carrito">
             <Carrito />
           </Route>
         </Switch>
       </div>
-    </Router>
+    </Router></>
   );
 }
 

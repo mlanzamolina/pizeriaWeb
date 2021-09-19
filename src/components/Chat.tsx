@@ -5,7 +5,7 @@ export default function Chat() {
   const history = useHistory();
   return (
     <div className="cover">
-      <Header></Header>
+  
       <h1>chat maleate</h1>
       <button
         id="btn-3"

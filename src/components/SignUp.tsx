@@ -5,7 +5,7 @@ export default function SignUp() {
     const history = useHistory();
     return (
         <div className="cover">
-      <Header></Header>
+     
       <h1>Sign Up</h1>
       <button
         id="btn-3"
