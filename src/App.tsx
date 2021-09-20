@@ -5,15 +5,17 @@ import Order from "./components/Order";
 import Login from "./components/Login";
 import Chat from "./components/Chat";
 import SignUp from "./components/SignUp";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Admin";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Reviews from './components/Reviews';
 import Carrito from './components/Carrito';
 import Header from './components/Header';
 import AddReview from './components/AddReview';
+import Admin from './components/Admin';
+import AddPizza from './components/AddPizza';
 
 function App() {
- 
+  const [profileMain, setprofileMain] = useState<string>();
   return (
     <><Header></Header><Router>
       <div className="container">
@@ -23,6 +25,9 @@ function App() {
           </Route>
           <Route path="/Order">
             <Order />
+          </Route>
+          <Route path="/Admin">
+            <Admin />
           </Route>
           <Route path="/Login">
             <div className="g-signin">
@@ -46,6 +51,9 @@ function App() {
           </Route>
           <Route path="/Carrito/:id">
             <Carrito />
+          </Route>
+          <Route path="/AddPizza">
+            <AddPizza />
           </Route>
         </Switch>
       </div>

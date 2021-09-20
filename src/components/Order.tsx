@@ -18,14 +18,16 @@ const Order = () => {
   const [subtotal, setSubtotal] = useState<any>();
   function handleSubmit() {
     const val = document.querySelectorAll("[value]");
-     console.log(val);
+    console.log(val);
     const frmdetails = {
       Cantidad: cantidad,
       Precio: precio,
     };
     console.log(frmdetails["Cantidad"]);
     console.log(frmdetails["Precio"]);
-    setSubtotal(parseInt(frmdetails["Precio"]) * parseInt(frmdetails["Cantidad"]));
+    setSubtotal(
+      parseInt(frmdetails["Precio"]) * parseInt(frmdetails["Cantidad"])
+    );
   }
 
   useEffect(() => {
@@ -40,45 +42,42 @@ const Order = () => {
   return (
     <div className="cover">
       <h1>Orders</h1>
-        <h1>{subtotal}</h1>
+      <h1>{subtotal}</h1>
       <CardGroup>
         {productos.map((item, index) => {
           return (
             <>
               {item.active ? (
                 //<h1>{item.nombre_producto}</h1>
-
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={item.imagen} />
                   <Card.Body>
-                    <Card.Title>{item.nombre_producto}</Card.Title>
-                    <Card.Text>{item.descripcion}</Card.Text>
-                    <Card.Text> Precio {item.precio} Lempiras</Card.Text>
                     <form>
-                      <label htmlFor="quantity" >
-                        Quantity:
-                      </label>
+                      <Link to={`/Reviews/${item.idproducto}`}>Reviews</Link>
+                      <Card.Title>{item.nombre_producto}</Card.Title>
+                      <Card.Text>{item.descripcion}</Card.Text>
+                      <Card.Text> Precio {item.precio} Lempiras</Card.Text>
+
+                      <label htmlFor="quantity">Quantity:</label>
                       <input
-                      placeholder="0"
+                        placeholder="0"
                         type="number"
                         id="quantity"
                         name="quantity"
                         min="0"
                         max="100"
-                        onChange={event => setCantidad(event.target.value)}
-                        onBlur={() => 
-                          {
-                            handleSubmit();
-                            setPrecio(item.precio);
-                            }}
+                        onChange={(event) => setCantidad(event.target.value)}
+                        onBlur={() => {
+                          handleSubmit();
+                          setPrecio(item.precio);
+                        }}
                       ></input>
-                     {/*<button onClick={() => 
+                      {/*<button onClick={() => 
                       {handleSubmit();
                         setPrecio(item.precio);
+
                         }}>Submit</button>*/}
                     </form>
-                    
-                    
                   </Card.Body>
                 </Card>
               ) : null}

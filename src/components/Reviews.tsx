@@ -23,9 +23,11 @@ const Reviews = () => {
 
   return (
     <>
-
-   
+<div className="cover">
 <h1>Reviews</h1>
+<button type="button" className="btn btn-warning"  onClick={() => {
+          history.push(`/AddReview/${parseInt(id)}`);
+        }}>Add Review</button>
       {reviews.map((item, index) => {
         return (
           <>
@@ -41,10 +43,9 @@ const Reviews = () => {
         );
       })}
     
-      <button type="button" className="btn btn-warning"  onClick={() => {
-          history.push(`/AddReview/${parseInt(id)}`);
-        }}>Add Review</button>
+     
       <Footer></Footer>
+    </div>
     </>
 
 
