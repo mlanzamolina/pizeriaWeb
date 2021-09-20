@@ -1,61 +1,48 @@
-*{
-   margin:0;
-   padding:0;
-   list-style:none;
-   
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-
-.nav-bar{
-	  height: 100px;
-	  width:100%;
-	  background-color:rgba(0, 0, 0, 0.966);
-
-}  
-
-.left-bar{
-    float: left;
-	padding: 20px;
-
-}
-.left-bar h1{
-	     text-transform:uppercase;
-	     font-weight:bold;
-	     color: yellow;     
-		 font-size: 52px; 
-		 font-family: "Comic Sans MS", "Comic Sans", cursive;
-		 -webkit-text-stroke: 1px rgba(255, 0, 0, 0.384);
+.nav-bar {
+  height: 100px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.966);
 }
 
-
-.logo{
-	background-size: 150px Auto;
-
-
+.left-bar {
+  float: left;
+  padding: 20px;
 }
-.logo > img{
-	float: left;
-	width:5%;
-    height:5%;
-}
-.right{
-
-}
-.right > a{
-	float:right;
-    padding: 20px;
-	font-size: 30px;
-	color: yellow;
-}
-.right > a > img{
-	float:right;
-	width:8%;
-  
-	
+.left-bar h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: yellow;
+  font-size: 52px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  -webkit-text-stroke: 1px rgba(255, 0, 0, 0.384);
 }
 
-
-
+.logo {
+  background-size: 150px Auto;
+}
+.logo > img {
+  float: left;
+  width: 5%;
+  height: 5%;
+}
+.right {
+}
+.right > a {
+  float: right;
+  padding: 20px;
+  font-size: 30px;
+  color: yellow;
+}
+.right > a > img {
+  float: right;
+  width: 8%;
+}
 
 /*h3 menu header
 .hero-text h2{
@@ -68,23 +55,28 @@
 }
 */
 
-#btn-1{
-	position: fixed;
-	padding: 50px;
-	bottom: 0;
-	left: 0;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 20px;
-	color: yellow;
-	background: linear-gradient(45deg, black, transparent);
-	border: 1px solid black;
-	border-square: 50px;
-	box-shadow: 0px 0px 5px 10px green;
-	font-family: "Comic Sans MS", "Comic Sans", cursive;
-						}
+#btn-1 {
+  position: fixed;
+  padding: 50px;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: yellow;
+  background: linear-gradient(45deg, black, transparent);
+  border: 1px solid black;
+  border-square: 50px;
+  box-shadow: 0px 0px 5px 10px green;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
 
-#btn-1:hover{color:green;cursor:pointer;border-radius:50px;box-shadow:0px 0px 5px 10px yellow;}
+#btn-1:hover {
+  color: green;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: 0px 0px 5px 10px yellow;
+}
 /*fixed button
 #btn-2{
 	position: fixed;
@@ -108,118 +100,126 @@
 	color:green;cursor:pointer;border-radius:50px;box-shadow:0px 0px 5px 10px yellow;
 }*/
 
-#btn-3{
-	position: fixed;
-	padding: 50px;
-	bottom: 0;
-	right: 0;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 20px;
-	color: yellow;
-	background: linear-gradient(45deg, black, transparent);
-	border: 1px solid black;
-	border-square: 50px;
-	box-shadow: 0px 0px 5px 10px green;
-	font-family: "Comic Sans MS", "Comic Sans", cursive;
+#btn-3 {
+  position: fixed;
+  padding: 50px;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: yellow;
+  background: linear-gradient(45deg, black, transparent);
+  border: 1px solid black;
+  border-square: 50px;
+  box-shadow: 0px 0px 5px 10px green;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-#btn-3:hover{
-	color:green;cursor:pointer;border-radius:50px;box-shadow:0px 0px 5px 10px yellow;
+#btn-3:hover {
+  color: green;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: 0px 0px 5px 10px yellow;
 }
 
-
-.cont{
-	padding: 20px;
+.cont {
+  padding: 20px;
 }
-.cont > h1{
+.cont > h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
-.cover > h1{
-	display: flex;
-	flex-direction: column;
-	justify-content: right;
-	text-align: right;
-  }
+.cover > h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  text-align: right;
+}
 
-  .cover{
-	padding: 20px;
-  }
+.cover {
+  padding: 20px;
+}
 
 .itemBoxGrid {
-display: grid;
+  display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
   padding: 20px;
   grid-auto-flow: column;
-  }
-  .itemBoxGrid > div {
-	width:100%;
-	height:100%;
-
 }
-.itemBoxGrid > div img{
-	width:100%;
-    height:80%;
-}  
+.itemBoxGrid > div {
+  width: 100%;
+  height: 100%;
+}
+.itemBoxGrid > div img {
+  width: 100%;
+  height: 80%;
+}
 
-  .itemBox {
-	text-align: center;
+.itemBox {
+  text-align: center;
+}
+.itemBox label {
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-size: 30px;
+  text-align: left;
+  padding-top: 20px;
+  color: yellow;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  -webkit-text-stroke: 1px rgba(255, 0, 0, 0.384);
+}
 
-   
-  }
-  .itemBox label{
-	 box-sizing:border-box;
-	      text-transform:uppercase;
-	      font-size:30px;
-	      text-align:left;
-	      padding-top:20px;
-	      color:yellow;
-		  font-family: "Comic Sans MS", "Comic Sans", cursive;
-		  -webkit-text-stroke: 1px rgba(255, 0, 0, 0.384);
-  }
-
-  .checkbox-round {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: left;
-    border: 1px solid #ddd;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
-	padding: 10px;
+.checkbox-round {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: left;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
 }
 
 .checkbox-round:checked {
-    background-color: green;
+  background-color: green;
 }
 
-h1 ,h2, h3, h4, h5{
-	color:yellow;
-	font-family: "Comic Sans MS", "Comic Sans", cursive;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: yellow;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
-
-.loginDiv{
-	padding: 100px;
+#Link {
+  color: yellow;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.loginDiv {
+  padding: 100px;
 }
 .login-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-label{
-	color:yellow;
-	font-family: "Comic Sans MS", "Comic Sans", cursive;
+label {
+  color: yellow;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-* {box-sizing: border-box}
+* {
+  box-sizing: border-box;
+}
 
 /* Add padding to containers */
 .container {
@@ -227,18 +227,13 @@ label{
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
 }
 
 /* Overwrite default styles of hr */
@@ -249,7 +244,7 @@ hr {
 
 /* Set a style for the submit/register button */
 .registerbtn {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 16px 20px;
   margin: 8px 0;
@@ -260,7 +255,7 @@ hr {
 }
 
 .registerbtn:hover {
-  opacity:1;
+  opacity: 1;
 }
 
 /* Add a blue text color to links */
@@ -272,4 +267,10 @@ a {
 .signin {
   background-color: #f1f1f1;
   text-align: center;
+}
+/*Arreglar css esta por la pija mismo pixeles en todas las fotos*/
+#imgOrder {
+  max-width: 100%;
+  max-height: 200px;
+  display: block; /* remove extra space below image */
 }

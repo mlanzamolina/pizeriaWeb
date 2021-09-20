@@ -14,7 +14,7 @@ export default function Register() {
   async function handleform() {
     Validate();
     const response = await axios.get(`${validateURL}/${user}`);
-    if (response.data.exist && validatePass) {
+    if (response.data.exist && !validatePass) {
       setValidate(true);
       console.log(user);
     } else {

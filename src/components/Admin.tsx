@@ -81,26 +81,23 @@ export default function Admin() {
 
                       <button
                         onClick={() => {
-                            
-                            setStatF(false);
-                            handlestateF();
-
+                          setStatF(false);
+                          handlestateF();
                         }}
                       >
                         Deactivate
                       </button>
-                     <Card.Text>
-                     <button
-                        onClick={() => {
+                      <Card.Text>
+                        <button
+                          onClick={() => {
                             setStatT(true);
                             handlestateT();
-
-                        }}
-                      >
-                        Activate
-                      </button>
-                         Estado Actual: {item.active.toString()}
-                     </Card.Text>
+                          }}
+                        >
+                          Activate
+                        </button>
+                        Estado Actual: {item.active.toString()}
+                      </Card.Text>
                     </form>
                   </Card.Body>
                 </Card>
@@ -111,7 +108,9 @@ export default function Admin() {
           })}
         </CardGroup>
       </div>
-      <Link to="/addPizza">Agregar Producto</Link>
+      <Link to="/addPizza">
+        <h3>Agregar Producto</h3>
+      </Link>
     </>
   );
 }

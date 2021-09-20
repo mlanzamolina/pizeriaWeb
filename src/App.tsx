@@ -19,8 +19,8 @@ function App() {
   const [profileMain, setprofileMain] = useState<string>();
   return (
     <>
-      <Header></Header>
       <Router>
+        <Header></Header>
         <div className="container">
           <Switch>
             <Route exact path="/">
@@ -52,7 +52,7 @@ function App() {
             <Route path="/AddReview/:id">
               <AddReview />
             </Route>
-            <Route path="/Carrito/:id">
+            <Route path="/Carrito">
               <Carrito />
             </Route>
             <Route path="/AddPizza">

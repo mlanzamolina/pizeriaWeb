@@ -50,7 +50,11 @@ const Order = () => {
               {item.active ? (
                 //<h1>{item.nombre_producto}</h1>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={item.imagen} />
+                  <img
+                    id="imgOrder"
+                    src={item.imagen}
+                    alt={item.nombew_producto}
+                  />
                   <Card.Body>
                     <form>
                       <Link to={`/Reviews/${item.idproducto}`}>Reviews</Link>
@@ -58,7 +62,7 @@ const Order = () => {
                       <Card.Text>{item.descripcion}</Card.Text>
                       <Card.Text> Precio {item.precio} Lempiras</Card.Text>
 
-                      <label htmlFor="quantity">Quantity:</label>
+                      <h6>Quantity:</h6>
                       <input
                         placeholder="0"
                         type="number"

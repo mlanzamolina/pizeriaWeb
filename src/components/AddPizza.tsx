@@ -39,29 +39,37 @@ export default function AddPizza() {
 
   return (
     <div>
-        <h1>ADD PRODUCT</h1>
+      <h1>ADD PRODUCT</h1>
 
       <input
         type="text"
         placeholder="Pizza Name"
         onChange={(e) => setNombre(e.target.value)}
-      /><br /><br />
+      />
+      <br />
+      <br />
       <input
         type="text"
         placeholder="Precio"
         onChange={(e) => setPrecio(e.target.value)}
-      /><br /><br />
+      />
+      <br />
+      <br />
       <input
         type="text"
         placeholder="Img"
         onChange={(e) => setImg(e.target.value)}
-      /><br /><br />
-        <input
+      />
+      <br />
+      <br />
+      <input
         type="text"
         placeholder="Descripcion"
         onChange={(e) => setDesc(e.target.value)}
       />
-      <button onClick={createPost}>Submit</button>
+      <button className="registerbtn" onClick={createPost}>
+        Submit
+      </button>
     </div>
   );
 }
