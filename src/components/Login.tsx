@@ -55,8 +55,13 @@ export default function Login(props: any) {
     setName(false);
   };
  
+  function handleReg(){
+    history.push("/Register");
+  }
+
   return (
     <div className="cover">
+
      
       {showName ? (
           <h1 id="name">Name: {profile}</h1>
@@ -75,7 +80,7 @@ export default function Login(props: any) {
       
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
       <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
-    
+      <button onClick={handleReg}>Register</button>
       <br /><br />
         {showloginButton ? (
           <GoogleLogin
@@ -96,6 +101,8 @@ export default function Login(props: any) {
             onLogoutSuccess={onSignoutSuccess}
           ></GoogleLogout>
         ) : null}
+        <br />
+        
 
 </div>
       </div>

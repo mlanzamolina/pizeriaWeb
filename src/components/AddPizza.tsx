@@ -8,6 +8,7 @@ export default function AddPizza() {
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
   const [img, setImg] = useState("");
+  const [desc, setDesc] = useState("");
   const [post, setPost] = React.useState(null);
 
   React.useEffect(() => {
@@ -18,13 +19,14 @@ export default function AddPizza() {
   function createPost() {
     const frmdetails = {
       Name: nombre,
+      Descripcion: desc,
       Img: img,
       Precio: precio,
     };
     axios
       .post(baseURL, {
         nombre_producto: frmdetails["Name"],
-        descripcion: "aaaaaaaaaaaaaa",
+        descripcion: frmdetails["Descripcion"],
         precio: frmdetails["Precio"],
         imagen: frmdetails["Img"],
         active: true,
@@ -54,6 +56,11 @@ export default function AddPizza() {
         placeholder="Img"
         onChange={(e) => setImg(e.target.value)}
       /><br /><br />
+        <input
+        type="text"
+        placeholder="Descripcion"
+        onChange={(e) => setDesc(e.target.value)}
+      />
       <button onClick={createPost}>Submit</button>
     </div>
   );
