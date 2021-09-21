@@ -7,11 +7,40 @@ import { Modal, ModalBody, ModalTitle } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const baseURL = "http://localhost:4000/reviews";
+const baseURL = "http://localhost:4000/actual/actual";
+const baseURLOrdenes = "http://localhost:4000/ordenes";
 const Order = () => {
   const history = useHistory();
   const [productos, setProductos] = useState<any[]>([]);
-  const [post, setPost] = useState<any[]>([]);
+  const [post, setPost] = useState({
+    user_id: 0,
+    nombre: "",
+    clave: "",
+    admin: "",
+    apellido: "",
+    username: "",
+  });
+  const [orden, setOrden] = useState({
+    order_id: 0,
+    aprovado: false,
+    user_id: 0,
+    ordertotal: 0,
+  });
+
+  async function handleAgregar() {
+    const response = await axios.get(`${baseURL}`);
+    setPost(response.data[0]);
+    const responseOrden = await axios.post(
+      `${baseURLOrdenes}/${post.user_id}`,
+      {
+        aprovado: false,
+        user_id: post.user_id,
+        ordertotal: parseInt(cantidad),
+      }
+    );
+    setOrden(responseOrden.data[0]);
+    history.push("/Carrito");
+  }
   const [cantidad, setCantidad] = useState("");
   const [text, setText] = React.useState("");
   const [precio, setPrecio] = useState<any>();
@@ -90,16 +119,7 @@ const Order = () => {
           );
         })}
       </CardGroup>
-
-      {/*
-      <button
-        id="btn-1"
-        onClick={() => {
-          history.push("/Carrito");
-        }}
-      >
-       
-      </button>*/}
+      <button onClick={handleAgregar}>Agregar a carrito</button>
 
       <button
         id="btn-3"

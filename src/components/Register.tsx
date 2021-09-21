@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 
 const baseURL = "http://localhost:4000/usuarios";
 const validateURL = "http://localhost:4000/validate";
+
 export default function Register() {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");

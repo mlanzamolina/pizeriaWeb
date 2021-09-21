@@ -32,16 +32,22 @@
   height: 5%;
 }
 .right {
+  float: right;
 }
 .right > a {
-  float: right;
-  padding: 20px;
-  font-size: 30px;
+  display: inline-block;
+  font-size: 20px;
   color: yellow;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-left: 0;
 }
 .right > a > img {
-  float: right;
+  display: inline-block;
   width: 8%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-left: 0;
 }
 
 /*h3 menu header
@@ -196,10 +202,6 @@ h2,
 h3,
 h4,
 h5 {
-  color: yellow;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-#Link {
   color: yellow;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
