@@ -8,11 +8,12 @@ import { json } from "stream/consumers";
 import emailjs from "emailjs-com";
 
 const baseURL = "http://localhost:4000/actual/actual";
+const activeURL = "http://localhost:4000/active";
 
 export default function Header() {
   const path = window.location.href;
   const history = useHistory();
-  const [Login, setLogin] = useState(false);
+  const [Login, setLogin] = useState(true);
   const [post, setPost] = useState({
     user_id: 0,
     nombre: "",
@@ -21,23 +22,46 @@ export default function Header() {
     apellido: "",
     username: "",
   });
-  const [validate, setValidate] = useState(false);
-  async function handleLogIn() {
-    const response = await axios.get(`${baseURL}`);
-    setPost(response.data[0]);
-    //const stringifiedUser = JSON.stringify(post.nombre);
-    if (post.nombre === "actual") {
-      if (path === "http://localhost:4000/Login") {
+  React.useEffect(() => {
+    async function getProfile() {
+      const response = await axios.get(`${baseURL}`);
+      setPost(response.data[0]);
+      if (path === "http://localhost:3000/Login") {
+        setLogin(false);
+      } else {
         setLogin(true);
       }
-      console.log(path);
-      setValidate(true);
-    } else {
+    }
+    getProfile();
+  }, []);
+
+  const [validate, setValidate] = useState(false);
+  function handleLogIn() {
+    /*
+   
+    */
+    //const stringifiedUser = JSON.stringify(post.nombre);
+    try {
+      if (post.nombre === "actual") {
+        /*
+        if (path === "http://localhost:4000/Login") {
+          setLogin(true);
+        }*/
+        console.log(path);
+        setValidate(true);
+      } else {
+        history.push("/Login");
+      }
+    } catch (error) {
       history.push("/Login");
     }
   }
-  async function handleLogOut() {
+  function handleLogOut() {
+    axios.put(`${activeURL}/${post.username}`, {
+      nombre: "",
+    });
     setValidate(false);
+    window.location.reload();
   }
 
   return (
@@ -60,11 +84,13 @@ export default function Header() {
         </div>
       </div>
       <div className="login">
-        {validate ? (
-          <button onClick={handleLogOut}>Logout</button>
-        ) : (
-          <button onClick={handleLogIn}>Login</button>
-        )}
+        {Login ? (
+          validate ? (
+            <button onClick={handleLogOut}>Logout</button>
+          ) : (
+            <button onClick={handleLogIn}>Login</button>
+          )
+        ) : null}
 
         {validate ? <h2>{post.username}</h2> : null}
       </div>

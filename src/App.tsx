@@ -17,6 +17,9 @@ import Register from "./components/Register";
 
 function App() {
   const [profileMain, setprofileMain] = useState<string>();
+  function actualizarPerfil(username: string): void {
+    setprofileMain(username);
+  }
   return (
     <>
       <Router>

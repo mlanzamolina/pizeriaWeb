@@ -272,7 +272,8 @@ a {
 }
 /*Arreglar css esta por la pija mismo pixeles en todas las fotos*/
 #imgOrder {
-  max-width: 100%;
+  display: fixed;
+  max-width: 200px;
   max-height: 200px;
   display: block; /* remove extra space below image */
 }

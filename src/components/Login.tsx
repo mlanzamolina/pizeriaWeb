@@ -10,6 +10,15 @@ const setActiveURL = "http://localhost:4000/active";
 
 export default function Login(props: any) {
   const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+  const [actual, setActual] = useState({
+    user_id: 0,
+    nombre: "",
+    clave: "",
+    admin: "",
+    apellido: "",
+    username: "",
+  });
   const [validate, setValidate] = useState(false);
 
   // handle button click of login form
@@ -26,19 +35,30 @@ export default function Login(props: any) {
   const [profile, setProfile] = useState("");
 
   async function handleform() {
+    //window.location.reload();
     const response = await axios.get(`${validateURL}/${user}`);
+    const responseUser = await axios.get(`${baseURL}/${user}`);
+    setActual(responseUser.data[0]);
     if (response.data.exist) {
-      await axios.put(`${setActiveURL}/${user}`, {
-        nombre: "actual",
-      });
-      setName(true);
-      setValidate(true);
-      setProfile(user);
-      history.push("/Order");
+      if(pass === actual.clave)
+      {
+       axios.put(`${setActiveURL}/${user}`, {
+          nombre: "actual",
+        });
+        setName(true);
+        setValidate(true);
+        setProfile(user);
+        history.push("/Order");
+
+      }else{
+     alert("user o pass incorrecta");
+    }
     } else {
       setValidate(false);
     }
     setUser("");
+    setPass("");
+    //window.location.reload();
   }
 
   const onLoginSuccess = (res: any) => {
@@ -89,6 +109,18 @@ export default function Login(props: any) {
             }}
             type="text"
             value={user}
+            placeholder="Enter Username"
+            required
+          />
+           <label id="username">
+            <h3>Password </h3>
+            <br />
+          </label>
+          <input
+            onChange={(e) => {
+              setPass(e.target.value);
+            }}
+            type="password"
             placeholder="Enter Username"
             required
           />

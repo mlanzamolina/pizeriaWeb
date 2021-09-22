@@ -1,10 +1,86 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "emailjs-com";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { CardGroup, Card } from "react-bootstrap";
 
 const baseURL = "http://localhost:4000/actual/actual";
+const producto = "http://localhost:4000/productos/";
+const carritosURL = "http://localhost:4000/carritos";
 
 export default function Carrito() {
+  const history = useHistory();
+  const [precio, setPrecio] = useState<any>();
+  const [cantidad, setCantidad] = useState("");
+  const [ide, setID] = useState<any>();
+  const [subtotal, setSubtotal] = useState<any>();
+
+  function handleSubmit() {
+    const val = document.querySelectorAll("[value]");
+    console.log(val);
+    const frmdetails = {
+      Cantidad: cantidad,
+      Precio: precio,
+    };
+    console.log(frmdetails["Cantidad"]);
+    console.log(frmdetails["Precio"]);
+    setSubtotal(
+      parseInt(frmdetails["Precio"]) * parseInt(frmdetails["Cantidad"])
+    );
+  }
+  const [item, setProducto] = useState({
+    idproducto: 0,
+    nombre_producto: "",
+    descripcion: "",
+    precio: 0,
+    imagen: "",
+    active: true,
+  });
+
+  const [carrito, setCarrito] = useState<any[]>([]);
+  const storedValueAsNumber = Number(localStorage.getItem("count"));
+  const [count, setCount] = useState(
+    Number.isInteger(storedValueAsNumber) ? storedValueAsNumber : 0
+  );
+  useEffect(() => {
+    localStorage.setItem("count", String(count));
+    //window.location.reload();
+  }, [count]);
+  const [arrayPrecio, setAPrecio] = useState([]);
+
+  const { id } = useParams<{ id: string }>();
+  React.useEffect(() => {
+    async function getProfile() {
+      const response = await axios.get(`${producto}${id}`);
+      setProducto(response.data[0]);
+    }
+    getProfile();
+  }, []);
+
+  useEffect(() => {
+    function getLogin() {
+      fetch("http://localhost:4000/carritos")
+        .then((data) => data.json())
+        .then((data) => setCarrito(data));
+    }
+    getLogin();
+  }, []);
+  function getFunc() {
+    let calc = 0;
+    for (let index = 0; index < carrito.length; index++) {
+      calc += carrito[index].cantidad * carrito[index].precio;
+    }
+    console.log(calc);
+    setCount(calc);
+  }
+  /*
+  function mas() {
+    setTotal(total + 500);
+  }
+  function menos() {
+    setTotal(total - 500);
+  }*/
+
   const [post, setPost] = useState({
     user_id: 0,
     nombre: "",
@@ -39,9 +115,10 @@ export default function Carrito() {
       );
     e.target.reset();
   }
+  
   return (
     <>
-      <h1>carrito</h1>
+    
       <form onSubmit={sendEmail}>
         <div className="row pt-5 mx-auto">
           <div className="col-8 form-group mx-auto">
@@ -59,7 +136,14 @@ export default function Carrito() {
               className="form-control"
               placeholder="Email Address"
               name="email"
-              value={post.username}
+            />
+          </div>
+          <div className="col-8 form-group pt-2 mx-auto">
+            <input
+              type="hidden"
+              className="form-control"
+              name="subject"
+              value={count}
             />
           </div>
 
@@ -71,7 +155,96 @@ export default function Carrito() {
             ></input>
           </div>
         </div>
-      </form>
+      </form><br /> <br /> 
+      <CardGroup>
+        <br />
+        <br />
+
+        {carrito.map((item, index) => {
+          return (
+            <>
+              <Card style={{ width: "18rem" }}>
+                <img
+                  id="imgOrder"
+                  src={item.imagen}
+                  alt={item.nombre_producto}
+                />
+                <Card.Body>
+                  <form>
+                    <Link to={`/Reviews/${item.idproducto}`}>Reviews</Link>
+                    <Card.Title>{item.nombre_producto}</Card.Title>
+                    <Card.Text> Precio {item.precio} Lempiras</Card.Text>
+
+                    <h6>Quantity:</h6>
+                    <input
+                      value={item.cantidad}
+                      type="number"
+                      id="quantity"
+                      name="quantity"
+                      min="0"
+                      max="100"
+                      onChange={(event) => {}}
+                    ></input>
+                    <button
+                      onClick={() => {
+                        axios.put(`${carritosURL}/${item.idcarrito}`, {
+                          precio: 500,
+                          cantidad: item.cantidad + 1,
+                        });
+                      }}
+                    >
+                      mas
+                    </button>
+                    <button
+                      onClick={() => {
+                        axios.put(`${carritosURL}/${item.idcarrito}`, {
+                          precio: 500,
+                          cantidad: item.cantidad - 1,
+                        });
+                      }}
+                    >
+                      menos
+                    </button>
+                    <br />
+                    <button
+        onClick={() => {
+          axios.delete(`${carritosURL}/${item.idcarrito}`);
+          setCount(0);
+         window.location.reload();
+        }}
+      >
+        Borrar item
+      </button>
+
+                    {/*<button onClick={() => 
+                      {handleSubmit();
+                        setPrecio(item.precio);
+
+                        }}>Submit</button>*/}
+                  </form>
+                </Card.Body>
+              </Card>
+              <br />
+            </>
+          );
+        })}
+      </CardGroup>
+      <button onClick={() => {
+         getFunc();
+         window.location.reload();
+        }}>subtotal</button>
+      
+      <br />
+      <button
+        onClick={() => {
+          axios.delete(`${carritosURL}`);
+          setCount(0);
+          history.push("/Order");
+        }}
+      >
+        Limpiar carrito
+      </button>
+      {<h1>Subtotal:{count}</h1>}
     </>
   );
 }

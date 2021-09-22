@@ -6,6 +6,7 @@ const baseURL = "http://localhost:4000/usuarios";
 const validateURL = "http://localhost:4000/validate";
 
 export default function Register() {
+  const history = useHistory();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [Confirmpass, setConfirmPass] = useState("");
@@ -32,6 +33,7 @@ export default function Register() {
     setUser("");
     setPass("");
     setConfirmPass("");
+    history.push("/Login");
   }
   function Validate() {
     if (pass !== Confirmpass) {

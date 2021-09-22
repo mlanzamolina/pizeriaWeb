@@ -9,9 +9,18 @@ import axios from "axios";
 
 const baseURL = "http://localhost:4000/actual/actual";
 const baseURLOrdenes = "http://localhost:4000/ordenes";
+const baseURLCarrito = "http://localhost:4000/carritos";
+const URLproductos = "http://localhost:4000/productos";
 const Order = () => {
   const history = useHistory();
   const [productos, setProductos] = useState<any[]>([]);
+  const [cantidad, setCantidad] = useState("");
+  const [text, setText] = React.useState("");
+  const [precio, setPrecio] = useState<any>();
+  const [id, setID] = useState<any>();
+  const [nombre, setNombre] = useState<any>();
+  const [imagen, setImagen] = useState<any>();
+  const [subtotal, setSubtotal] = useState<any>();
   const [post, setPost] = useState({
     user_id: 0,
     nombre: "",
@@ -20,31 +29,27 @@ const Order = () => {
     apellido: "",
     username: "",
   });
-  const [orden, setOrden] = useState({
-    order_id: 0,
-    aprovado: false,
-    user_id: 0,
-    ordertotal: 0,
-  });
+  useEffect(() => {
+    async function getProfile() {
+      const response = await axios.get(`${baseURL}`);
+      setPost(response.data[0]);
+    }
+    getProfile();
+  }, []);
 
   async function handleAgregar() {
-    const response = await axios.get(`${baseURL}`);
-    setPost(response.data[0]);
-    const responseOrden = await axios.post(
-      `${baseURLOrdenes}/${post.user_id}`,
-      {
-        aprovado: false,
-        user_id: post.user_id,
-        ordertotal: parseInt(cantidad),
-      }
-    );
-    setOrden(responseOrden.data[0]);
-    history.push("/Carrito");
+    try {
+      await axios.post(`${baseURLCarrito}`, {
+        nombre_producto: nombre,
+        precio: precio,
+        cantidad: cantidad,
+        imagen: imagen,
+        idproducto: id,
+        user_id: 1,
+      });
+    } catch (error) {}
   }
-  const [cantidad, setCantidad] = useState("");
-  const [text, setText] = React.useState("");
-  const [precio, setPrecio] = useState<any>();
-  const [subtotal, setSubtotal] = useState<any>();
+
   function handleSubmit() {
     const val = document.querySelectorAll("[value]");
     console.log(val);
@@ -72,6 +77,7 @@ const Order = () => {
     <div className="cover">
       <h1>Orders</h1>
       <h1>{subtotal}</h1>
+      {console.log(productos)}
       <CardGroup>
         {productos.map((item, index) => {
           return (
@@ -82,7 +88,7 @@ const Order = () => {
                   <img
                     id="imgOrder"
                     src={item.imagen}
-                    alt={item.nombew_producto}
+                    alt={item.nombre_producto}
                   />
                   <Card.Body>
                     <form>
@@ -99,10 +105,16 @@ const Order = () => {
                         name="quantity"
                         min="0"
                         max="100"
-                        onChange={(event) => setCantidad(event.target.value)}
+                        onChange={(event) => {
+                          setCantidad(event.target.value);
+                          setPrecio(item.precio);
+                        }}
                         onBlur={() => {
                           handleSubmit();
                           setPrecio(item.precio);
+                          setID(item.idproducto);
+                          setNombre(item.nombre_producto);
+                          setImagen(item.imagen);
                         }}
                       ></input>
                       {/*<button onClick={() => 
@@ -119,7 +131,14 @@ const Order = () => {
           );
         })}
       </CardGroup>
-      <button onClick={handleAgregar}>Agregar a carrito</button>
+      <button
+        onClick={() => {
+          handleAgregar();
+          history.push(`/Carrito`);
+        }}
+      >
+        Agregar a carrito
+      </button>
 
       <button
         id="btn-3"
