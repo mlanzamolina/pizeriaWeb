@@ -115,10 +115,9 @@ export default function Carrito() {
       );
     e.target.reset();
   }
-  
+
   return (
     <>
-    
       <form onSubmit={sendEmail}>
         <div className="row pt-5 mx-auto">
           <div className="col-8 form-group mx-auto">
@@ -155,7 +154,8 @@ export default function Carrito() {
             ></input>
           </div>
         </div>
-      </form><br /> <br /> 
+      </form>
+      <br /> <br />
       <CardGroup>
         <br />
         <br />
@@ -163,7 +163,7 @@ export default function Carrito() {
         {carrito.map((item, index) => {
           return (
             <>
-              <Card style={{ width: "18rem" }}>
+              <Card>
                 <img
                   id="imgOrder"
                   src={item.imagen}
@@ -177,6 +177,7 @@ export default function Carrito() {
 
                     <h6>Quantity:</h6>
                     <input
+                      style={{ width: "100px" }}
                       value={item.cantidad}
                       type="number"
                       id="quantity"
@@ -207,14 +208,14 @@ export default function Carrito() {
                     </button>
                     <br />
                     <button
-        onClick={() => {
-          axios.delete(`${carritosURL}/${item.idcarrito}`);
-          setCount(0);
-         window.location.reload();
-        }}
-      >
-        Borrar item
-      </button>
+                      onClick={() => {
+                        axios.delete(`${carritosURL}/${item.idcarrito}`);
+                        setCount(0);
+                        window.location.reload();
+                      }}
+                    >
+                      Borrar item
+                    </button>
 
                     {/*<button onClick={() => 
                       {handleSubmit();
@@ -229,11 +230,14 @@ export default function Carrito() {
           );
         })}
       </CardGroup>
-      <button onClick={() => {
-         getFunc();
-         window.location.reload();
-        }}>subtotal</button>
-      
+      <button
+        onClick={() => {
+          getFunc();
+          window.location.reload();
+        }}
+      >
+        subtotal
+      </button>
       <br />
       <button
         onClick={() => {

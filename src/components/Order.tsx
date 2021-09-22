@@ -84,7 +84,7 @@ const Order = () => {
             <>
               {item.active ? (
                 //<h1>{item.nombre_producto}</h1>
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "18rem", margin: "10px" }}>
                   <img
                     id="imgOrder"
                     src={item.imagen}
@@ -99,6 +99,7 @@ const Order = () => {
 
                       <h6>Quantity:</h6>
                       <input
+                       
                         placeholder="0"
                         type="number"
                         id="quantity"
