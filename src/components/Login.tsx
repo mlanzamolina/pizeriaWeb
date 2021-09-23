@@ -121,7 +121,7 @@ export default function Login(props: any) {
               setPass(e.target.value);
             }}
             type="password"
-            placeholder="Enter Username"
+            placeholder="Enter Password"
             required
           />
 
