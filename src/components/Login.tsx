@@ -31,15 +31,18 @@ export default function Login(props: any) {
   const [Login, setLogin] = useState<any[]>([]);
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
+  const [validateUser, setvalidateUser] = useState(false);
   const [showName, setName] = useState(false);
   const [profile, setProfile] = useState("");
 
   async function handleform() {
     //window.location.reload();
-    const response = await axios.get(`${validateURL}/${user}`);
+    console.log(pass);
+   
     const responseUser = await axios.get(`${baseURL}/${user}`);
     setActual(responseUser.data[0]);
-    if (response.data.exist) {
+    
+    if (validateUser) {
       if(pass === actual.clave)
       {
        axios.put(`${setActiveURL}/${user}`, {
@@ -90,6 +93,11 @@ export default function Login(props: any) {
   function handleOrders() {
     history.push("/Order");
   }
+  async function handleUser(){
+    const response = await axios.get(`${validateURL}/${user}`);
+    setvalidateUser(response.data.exist);
+    console.log(validateUser);
+  }
 
   return (
     <div className="container">
@@ -106,6 +114,7 @@ export default function Login(props: any) {
           <input
             onChange={(e) => {
               setUser(e.target.value);
+              handleUser();
             }}
             type="text"
             value={user}
@@ -119,6 +128,7 @@ export default function Login(props: any) {
           <input
             onChange={(e) => {
               setPass(e.target.value);
+              handleUser();
             }}
             type="password"
             placeholder="Enter Password"

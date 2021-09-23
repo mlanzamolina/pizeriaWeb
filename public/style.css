@@ -50,17 +50,6 @@
   margin-left: 0;
 }
 
-/*h3 menu header
-.hero-text h2{
-	      box-sizing:border-box;
-	      text-transform:uppercase;
-	      font-size:40px;
-	      text-align:left;
-	      padding-top:20px;
-	      color:yellow;
-}
-*/
-
 #btn-1 {
   position: fixed;
   padding: 50px;
@@ -273,7 +262,62 @@ a {
 /*Arreglar css esta por la pija mismo pixeles en todas las fotos*/
 #imgOrder {
   display: fixed;
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 300px;
+  max-height: 300px;
   display: block; /* remove extra space below image */
 }
+
+.navbar ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: black;
+  height: 125px;
+  line-height: 36px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+.navbar a {
+  display: block;
+  text-decoration: none;
+}
+.navbar li {
+  float: left;
+}
+#logo {
+  width: 20%;
+}
+.navbar a:hover,
+.active a {
+  padding: 20px;
+}
+.search-box {
+  float: right;
+  padding: 0px 75px;
+}
+#carrito {
+  width: 5%;
+  position: fixed;
+  padding: 20px;
+  top: 15px;
+  right: 115px;
+}
+#btnlogin {
+  position: fixed;
+  padding: 20px;
+  top: 35px;
+  right: 10px;
+}
+.login {
+  padding: 20px;
+}
+
+#btncarrito {
+  width: 50px;
+  height: 50px;
+}
+p{
+  font-size: large;
+}
+

@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { CardGroup, Card } from "react-bootstrap";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const baseURL = "http://localhost:4000/actual/actual";
 const producto = "http://localhost:4000/productos/";
@@ -42,8 +44,10 @@ export default function Carrito() {
   const [count, setCount] = useState(
     Number.isInteger(storedValueAsNumber) ? storedValueAsNumber : 0
   );
+  const [vender, setVender] = useState("");
   useEffect(() => {
     localStorage.setItem("count", String(count));
+
     //window.location.reload();
   }, [count]);
   const [arrayPrecio, setAPrecio] = useState([]);
@@ -72,6 +76,7 @@ export default function Carrito() {
     }
     console.log(calc);
     setCount(calc);
+    setVender(calc.toString());
   }
   /*
   function mas() {
@@ -113,8 +118,17 @@ export default function Carrito() {
           console.log(error.text);
         }
       );
+    alert(`Su orden esta en camino! Mira tu correo ${post.username}`);
     e.target.reset();
+    
   }
+  let popup = (
+    <div>
+     <Popup trigger={<button> Trigger</button>} position="right center">
+        <div>Orden realizada, revisa tu correo!</div>
+      </Popup>
+    </div>
+  );
 
   return (
     <>
@@ -187,34 +201,52 @@ export default function Carrito() {
                       onChange={(event) => {}}
                     ></input>
                     <button
+                      type="button"
+                      className="btn btn-outline-primary"
                       onClick={() => {
                         axios.put(`${carritosURL}/${item.idcarrito}`, {
-                          precio: 500,
+                          precio: item.precio,
                           cantidad: item.cantidad + 1,
                         });
                       }}
                     >
-                      mas
+                      <img
+                        src="img/plus.png"
+                        alt="carrito"
+                        id="btncarrito"
+                      ></img>
                     </button>
                     <button
+                      type="button"
+                      className="btn btn-outline-primary"
                       onClick={() => {
                         axios.put(`${carritosURL}/${item.idcarrito}`, {
-                          precio: 500,
+                          precio: item.precio,
                           cantidad: item.cantidad - 1,
                         });
                       }}
                     >
-                      menos
+                      <img
+                        src="img/minus.png"
+                        alt="carrito"
+                        id="btncarrito"
+                      ></img>
                     </button>
                     <br />
                     <button
+                      type="button"
+                      className="btn btn-outline-primary"
                       onClick={() => {
                         axios.delete(`${carritosURL}/${item.idcarrito}`);
                         setCount(0);
                         window.location.reload();
                       }}
                     >
-                      Borrar item
+                      <img
+                        src="img/garbage.png"
+                        alt="carrito"
+                        id="btncarrito"
+                      ></img>
                     </button>
 
                     {/*<button onClick={() => 
@@ -231,6 +263,7 @@ export default function Carrito() {
         })}
       </CardGroup>
       <button
+        className="registerbtn"
         onClick={() => {
           getFunc();
           window.location.reload();
@@ -240,6 +273,7 @@ export default function Carrito() {
       </button>
       <br />
       <button
+        className="registerbtn"
         onClick={() => {
           axios.delete(`${carritosURL}`);
           setCount(0);
@@ -248,7 +282,15 @@ export default function Carrito() {
       >
         Limpiar carrito
       </button>
-      {<h1>Subtotal:{count}</h1>}
+      <h1>Subtotal:{count}</h1>
+      <button
+        id="btn-1"
+        onClick={() => {
+          history.push("/Order");
+        }}
+      >
+        Orders
+      </button>
     </>
   );
 }

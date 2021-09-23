@@ -132,7 +132,7 @@ const Order = () => {
           );
         })}
       </CardGroup>
-      <button
+      <button className="registerbtn"
         onClick={() => {
           handleAgregar();
           history.push(`/Carrito`);
@@ -142,7 +142,7 @@ const Order = () => {
       </button>
 
       <button
-        id="btn-3"
+        id="btn-1"
         onClick={() => {
           history.push("/");
         }}

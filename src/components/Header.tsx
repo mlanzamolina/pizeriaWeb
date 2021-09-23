@@ -18,7 +18,7 @@ export default function Header() {
     user_id: 0,
     nombre: "",
     clave: "",
-    admin: "",
+    admin: false,
     apellido: "",
     username: "",
   });
@@ -36,6 +36,7 @@ export default function Header() {
   }, []);
 
   const [validate, setValidate] = useState(false);
+  const [validateAdmin, setValidateAdmin] = useState(false);
   function handleLogIn() {
     /*
    
@@ -49,11 +50,13 @@ export default function Header() {
         }*/
         console.log(path);
         setValidate(true);
+        setValidateAdmin(post.admin);
+        console.log(post.admin);
       } else {
-        history.push("/Login");
+        history.push("/Register");
       }
     } catch (error) {
-      history.push("/Login");
+      history.push("/Register");
     }
   }
   function handleLogOut() {
@@ -66,34 +69,59 @@ export default function Header() {
 
   return (
     <>
-      <div className="nav-bar">
-        <Link to="/">
-          <div className="left-bar">
-            <h1>Crunchy Royal Pizza</h1>
-          </div>
-        </Link>
-        <div className="logo">
-          <img id="logo" src="img/logoPizza.png" alt="logo"></img>
+      <nav className="navbar">
+        <ul>
+          <li className="active">
+            {" "}
+            <Link to="/">
+              <div className="left-bar">
+                <h1>Crunchy Royal Pizza</h1>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <img id="logo" src="img/logoPizza.png" alt="logo"></img>
+          </li>
 
-          <div className="right">
+          <li>
+            {" "}
+            {validateAdmin ? <Link id="links"to="/Admin">Admin tools</Link> : null}
+          </li>
+          <li>
             <Link to="/Carrito">
               <img id="carrito" src="img/carrito.png" alt="carrito"></img>
             </Link>
-            <Link to="/Admin">Admin tools</Link>
-          </div>
-        </div>
-      </div>
-      <div className="login">
-        {Login ? (
-          validate ? (
-            <button onClick={handleLogOut}>Logout</button>
-          ) : (
-            <button onClick={handleLogIn}>Login</button>
-          )
-        ) : null}
+          </li>
+          <li>
+            <div className="login">
+              {Login ? (
+                validate ? (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    id="btnlogin"
+                    onClick={handleLogOut}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    id="btnlogin"
+                    onClick={handleLogIn}
+                  >
+                    Sign-In
+                  </button>
+                )
+              ) : null}
 
-        {validate ? <h2>{post.username}</h2> : null}
-      </div>
+             
+            </div>
+          </li>
+        </ul>
+      </nav>
+      {validate ? <h2>{post.username}</h2> : null}
     </>
   );
 }

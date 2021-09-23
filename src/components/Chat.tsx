@@ -6,7 +6,7 @@ export default function Chat() {
   return (
     <div className="cover">
   
-      <h1>chat maleate</h1>
+      <h1>chat en mantenimiento</h1>
       <button
         id="btn-3"
         onClick={() => {

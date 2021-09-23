@@ -79,24 +79,27 @@ export default function Admin() {
                         Lempiras
                       </Card.Text>
 
-                      <button
+                      <button type="button" className="btn btn-outline-primary"
                         onClick={() => {
                           setStatF(false);
                           handlestateF();
+                          window.location.reload();
                         }}
                       >
                         Deactivate
                       </button>
                       <Card.Text>
-                        <button
+                        <button type="button" className="btn btn-outline-primary"
                           onClick={() => {
                             setStatT(true);
                             handlestateT();
+                            window.location.reload();
                           }}
                         >
                           Activate
                         </button>
-                        Estado Actual: {item.active.toString()}
+                        <br />
+                        Estado: {item.active.toString()}
                       </Card.Text>
                     </form>
                   </Card.Body>

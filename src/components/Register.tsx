@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const baseURL = "http://localhost:4000/usuarios";
 const validateURL = "http://localhost:4000/validate";
@@ -105,7 +106,7 @@ export default function Register() {
 
       <div className="container signin">
         <p>
-          Already have an account? <a href="/Login">Sign in</a>.
+          Already have an account? <a href="/Login">Login</a>.
         </p>
       </div>
     </div>
