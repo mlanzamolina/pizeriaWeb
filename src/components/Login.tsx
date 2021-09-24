@@ -38,24 +38,24 @@ export default function Login(props: any) {
   async function handleform() {
     //window.location.reload();
     console.log(pass);
-   
+    const response = await axios.get(`${validateURL}/${user}`);
+    setvalidateUser(response.data.exist);
+
     const responseUser = await axios.get(`${baseURL}/${user}`);
     setActual(responseUser.data[0]);
-    
-    if (validateUser) {
-      if(pass === actual.clave)
-      {
-       axios.put(`${setActiveURL}/${user}`, {
+
+    if (response.data.exist) {
+      if (pass === actual.clave) {
+        axios.put(`${setActiveURL}/${user}`, {
           nombre: "actual",
         });
         setName(true);
         setValidate(true);
         setProfile(user);
         history.push("/Order");
-
-      }else{
-     alert("user o pass incorrecta");
-    }
+      } else {
+        alert("user o pass incorrecta");
+      }
     } else {
       setValidate(false);
     }
@@ -93,7 +93,7 @@ export default function Login(props: any) {
   function handleOrders() {
     history.push("/Order");
   }
-  async function handleUser(){
+  async function handleUser() {
     const response = await axios.get(`${validateURL}/${user}`);
     setvalidateUser(response.data.exist);
     console.log(validateUser);
@@ -121,7 +121,7 @@ export default function Login(props: any) {
             placeholder="Enter Username"
             required
           />
-           <label id="username">
+          <label id="username">
             <h3>Password </h3>
             <br />
           </label>

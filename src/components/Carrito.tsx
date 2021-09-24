@@ -132,6 +132,7 @@ export default function Carrito() {
 
   return (
     <>
+      <h1>Subtotal:{count}</h1>
       <form onSubmit={sendEmail}>
         <div className="row pt-5 mx-auto">
           <div className="col-8 form-group mx-auto">
@@ -282,7 +283,6 @@ export default function Carrito() {
       >
         Limpiar carrito
       </button>
-      <h1>Subtotal:{count}</h1>
       <button
         id="btn-1"
         onClick={() => {
